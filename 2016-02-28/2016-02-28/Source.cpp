@@ -8,7 +8,7 @@ class TwoDShape {
 	double height;
 public:
 	TwoDShape() {
-		width = height = 0;
+		width = height = 0.0;
 	}
 	TwoDShape(double w, double h) {
 		width = w;
@@ -54,22 +54,32 @@ public:
 	}
 };
 
+class ColorTriangle :public Triangle {
+	char color[20];
+public:
+	ColorTriangle(char *clr, char*style, double w, double h) :Triangle(style, w, h) {
+		strcpy(color, clr);
+	}
+	void showColor() {
+		cout << "Color " << color << "\n";
+	}
+};
+
 int main() {
-	Triangle t1; 
-	Triangle t2("right-angled", 8.0, 12.0);
-	Triangle t3("isosceles", 4.0, 4.0);
-	cout << "Information about triangle t1: " << endl;
+	ColorTriangle t1("blue", "right-angle", 8.0, 12.0);
+	ColorTriangle t2("red", "isolesses", 2.0, 2.0);
+	cout << "Information about triangle t1:\n";
 	t1.showStyle();
 	t1.showDim();
-	cout << "Square is equal " << t1.area() << "\n";
-	cout << "Information about triangle t2: " << endl;
+	t1.showColor();
+	cout << "Square equal " << t1.area() << "\n";
+	cout << "\n";
+
+	cout << "Information about triangle t2:\n";
 	t2.showStyle();
 	t2.showDim();
-	cout << "Square is equal " << t2.area() << endl;
-	cout << "Information about triangle t3: " << endl;
-	t3.showStyle();
-	t3.showDim();
-	cout << "Square is equal " << t3.area() << endl;
-
+	t2.showColor();
+	cout << "Square equal " << t2.area() << "\n";
+	cout << "\n";
 	return 0;
 }
