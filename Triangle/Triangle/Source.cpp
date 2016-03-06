@@ -39,10 +39,7 @@ public:
 	char *getName() {
 		return name;
 	}
-	virtual double area() {
-		cout << "\nError: function area() will redefine.\n";
-		return 0.0;
-	}
+	virtual double area() = 0;
 };
 
 class Triangle :public TwoDShape {
@@ -83,12 +80,11 @@ public:
 };
 
 int main() {
-	TwoDShape*shapes[5];
+	TwoDShape*shapes[4];
 	shapes[0] = &Triangle("right-angle", 8.0, 12.0);
 	shapes[1] = &Rectangle(10);
 	shapes[2] = &Rectangle(10, 4);
 	shapes[3] = &Triangle(7.0);
-	shapes[4] = &TwoDShape(10, 20, "all");
 	for (int i = 0; i < 5; ++i) {
 		cout << "This object " << shapes[i]->getName() << ". ";
 		cout << "Square equal " << shapes[i]->area() << "\n";
