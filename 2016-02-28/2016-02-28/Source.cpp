@@ -6,16 +6,20 @@ using namespace std;
 class TwoDShape {
 	double width;
 	double height;
+	char name[20];
 public:
 	TwoDShape() {
 		width = height = 0.0;
+		strcpy(name, "unknown");
 	}
-	TwoDShape(double w, double h) {
+	TwoDShape(double w, double h, char *n) {
 		width = w;
 		height = h;
+		strcpy(name, n);
 	}
-	TwoDShape(double x) {
+	TwoDShape(double x, char *n) {
 		width = height = x;
+		strcpy(name, n);
 	}
 	void showDim() {
 		cout << "Width and height equal " << width << " and " << height << endl;
@@ -32,6 +36,13 @@ public:
 	void setHeight(double h) {
 		height = h;
 	}
+	char *getName() {
+		return name;
+	}
+	virtual double area() {
+		cout << "\nError: function area() will redefine.\n";
+		return 0.0;
+	}
 };
 
 class Triangle :public TwoDShape {
@@ -40,10 +51,10 @@ public:
 	Triangle() {
 		strcpy(style, "unknown");
 	}
-	Triangle(char *str, double w, double h):TwoDShape(w,h) {
+	Triangle(char *str, double w, double h):TwoDShape(w,h,"triangle") {
 		strcpy(style, str);
 	}
-	Triangle(double x) :TwoDShape(x) {
+	Triangle(double x) :TwoDShape(x,"triangle") {
 		strcpy(style, "isosceles");
 	}
 	double area() {
@@ -54,32 +65,33 @@ public:
 	}
 };
 
-class ColorTriangle :public Triangle {
-	char color[20];
+class Rectangle :public TwoDShape {
 public:
-	ColorTriangle(char *clr, char*style, double w, double h) :Triangle(style, w, h) {
-		strcpy(color, clr);
+	Rectangle(double w, double h) : TwoDShape(w, h, "rectangle") {
 	}
-	void showColor() {
-		cout << "Color " << color << "\n";
+	Rectangle(double x) :TwoDShape(x, "rectangle") {
+	}
+	bool isSquare() {
+		if (getWidth() == getHeight()) {
+			return true;
+		}
+		return false;
+	}
+	double area() {
+		return getWidth()*getHeight();
 	}
 };
 
 int main() {
-	ColorTriangle t1("blue", "right-angle", 8.0, 12.0);
-	ColorTriangle t2("red", "isolesses", 2.0, 2.0);
-	cout << "Information about triangle t1:\n";
-	t1.showStyle();
-	t1.showDim();
-	t1.showColor();
-	cout << "Square equal " << t1.area() << "\n";
-	cout << "\n";
-
-	cout << "Information about triangle t2:\n";
-	t2.showStyle();
-	t2.showDim();
-	t2.showColor();
-	cout << "Square equal " << t2.area() << "\n";
-	cout << "\n";
+	TwoDShape*shapes[5];
+	shapes[0] = &Triangle("right-angle", 8.0, 12.0);
+	shapes[1] = &Rectangle(10);
+	shapes[2] = &Rectangle(10, 4);
+	shapes[3] = &Triangle(7.0);
+	shapes[4] = &TwoDShape(10, 20, "all");
+	for (int i = 0; i < 5; ++i) {
+		cout << "This object " << shapes[i]->getName()<<". ";
+		cout << "Square equal " << shapes[i]->area() << "\n";
+	}
 	return 0;
 }

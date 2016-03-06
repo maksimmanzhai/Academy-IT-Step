@@ -3,25 +3,35 @@ using namespace  std;
 
 class B {
 public:
-	B() {
-		cout << "Building of base part object.\n";
-	}
-	~B() {
-		cout << "Destroying of base part object.\n";
+	virtual void who() {
+		cout << "Base class.\n";
 	}
 };
 
-class D : public B {
+class D1 : public B {
 public:
-	D() {
-		cout << "Building of derive part object.\n";
+	void who() {
+		cout << "First derived class.\n";
 	}
-	~D() {
-		cout << "Destroying of derive part object.\n";
-	}
+};
+
+class D2 :public B {
+public:
+	/*void who() {
+		cout << "Second derived class.\n";
+	}*/
 };
 
 int main() {
-	D ob;
+	B base_obj;
+	B *p;
+	D1 D1_obj;
+	D2 D2_obj;
+	p = &base_obj;
+	p->who();
+	p = &D1_obj;
+	p->who();
+	p = &D2_obj;
+	p->who();
 	return 0;
 }
