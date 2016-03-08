@@ -10,6 +10,7 @@ public:
 		z = c;
 	}
 	friend ostream &operator<<(ostream &stream, ThreeD obj);
+	friend istream &operator>>(istream &stream, ThreeD &obj);
 };
 
 ostream &operator<<(ostream &stream, ThreeD obj) {
@@ -19,8 +20,19 @@ ostream &operator<<(ostream &stream, ThreeD obj) {
 	return stream;
 }
 
+istream &operator>>(istream &stream, ThreeD &obj) {
+	cout << "Enter your coordinate X, Y, Z: ";
+	stream >> obj.x >> obj.y >> obj.z;
+	return stream;
+}
+
 int main() {
-	ThreeD a(1, 2, 3), b(3, 4, 5), c(5, 6, 7);
-	cout << a << b << c;
+	ThreeD a(1, 2, 3);
+	cout << a;
+	cin >> a;
+	cout << a;
+
+	cout.setf(ios::scientific | ios::showpos);
+	cout << 123 << " " << 123.23 << " ";
 	return 0;
 }
