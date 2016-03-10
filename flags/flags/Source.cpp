@@ -1,51 +1,37 @@
 #include <iostream>
-#include <iomanip>
+#include <fstream>
 using namespace std;
 
-istream &promt(istream &stream) {
-	cin >> hex;
-	cout << "Enter your number in HEX-format: ";
-	return stream;
-}
-
 int main() {
+	char ch;
 	int i;
-	cin >> promt >> i;
-	cout << i;
+	float f;
+	char str[80];
+	ifstream in("test");
+	if (!in) {
+		cout << "Don't open file.\n";
+		return 1;
+	}
+	in >> i;
+	in >> f;
+	in >> ch;
+	in >> str;
+	cout << i << " " << f << " " << ch << "\n";
+	cout << str;
+	in.close();
 	
-	
-	/*cout << setprecision(2) << 1000.243 << endl;
-	cout << setw(20) << "Hi, all!" << endl;
-	cout << setw(20) << setiosflags(ios::showpos) << setiosflags(ios::scientific) << 123 << " " << 123.23 << endl;
-	char s[80];*/
 
-	/*ios::fmtflags f;
+	/*ofstream out("test");
 
-	f = cout.flags();
+	if (!out) {
+		cout << "Don't open file.\n";
+		return 1;
+	}
+	out << 10 << " " << 123.23 << "\n";
+	out << "This is short text file.";
+	out.close();*/
 
-	if (f & ios::showpos)
-		cout << "Flag showpos is set for stream cout.\n";
-	else
-		cout << "Flag showpos is fall for stream cout.\n";
 
-	cout << "\nSetting flag showpos for stream cout.\n";
-	cout.setf(ios::showpos);
 
-	f = cout.flags();
-
-	if (f & ios::showpos)
-		cout << "Flag showpos is set for stream cout.\n";
-	else
-		cout << "Flag showpos is fall for stream cout.\n";
-
-	cout << "\nFall flag showpos for stream cout.\n";
-	cout.unsetf(ios::showpos);
-
-	f = cout.flags();
-
-	if (f & ios::showpos)
-		cout << "Flag showpos is set for stream cout.\n";
-	else
-		cout << "Flag showpos is fall for stream cout.\n";*/
 	return 0;
 }
