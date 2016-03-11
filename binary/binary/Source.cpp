@@ -1,31 +1,14 @@
-//using function read() and write()
+//using function get()
 
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
-	int n[5] = { 1,2,3,4,5 };
-	register int i;
-
-	ofstream out("test", ios::out | ios::binary);
-	if (!out) {
-		cout << "Don't open file.\n";
-		return 1;
-	}
-	out.write((char *)&n, sizeof n);
-	out.close();
-	for (i = 0; i < 5; ++i)
-		n[i] = 0;
-	ifstream in("test", ios::in | ios::binary);
-	if (!in) {
-		cout << "Don't open file.\n";
-		return 1;
-	}
-	in.read((char *)&n, sizeof n);
-	for (i = 0; i < 5; ++i)
-		cout << n[i] << " ";
-	in.close();
+int main() {
+	char str[80];
+	cout << "Enter name: ";
+	cin.get(str, 79);
+	cout << str << '\n';
 	return 0;
 }
