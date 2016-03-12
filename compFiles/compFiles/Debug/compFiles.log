@@ -1,0 +1,3 @@
+﻿  Source.cpp
+d:\gitrepo\compfiles\compfiles\source.cpp(8): warning C4101: 'numread': unreferenced local variable
+  compFiles.vcxproj -> D:\gitRepo\compFiles\Debug\compFiles.exe
