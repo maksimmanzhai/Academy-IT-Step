@@ -4,12 +4,19 @@
 
 using namespace std;
 
+void Xtest(int test) {
+	cout << "In function Xtes(), value tes is equal: " << test << "\n";
+	if (test)
+		throw test;
+}
+
 int main() {
 	cout << "Start\n";
 	try {
 		cout << "In try-block\n";
-		throw 99;
-		cout << "This is instruction will not execute.";
+		Xtest(0);
+		Xtest(1);
+		Xtest(2);
 	}
 	catch (int i) {
 		cout << "Interception of exeception. This value equal: ";
