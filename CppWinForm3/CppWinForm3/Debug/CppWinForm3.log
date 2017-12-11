@@ -1,0 +1,4 @@
+﻿  MyForm.cpp
+d:\gitrepo\cppwinform3\cppwinform3\MyForm.h(301): warning C4965: implicit box of integer 0; use nullptr or explicit cast
+d:\gitrepo\cppwinform3\cppwinform3\MyForm.h(303): warning C4965: implicit box of integer 0; use nullptr or explicit cast
+  CppWinForm3.vcxproj -> D:\gitRepo\CppWinForm3\Debug\CppWinForm3.exe
